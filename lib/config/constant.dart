@@ -1,7 +1,7 @@
 class Constant {
   //--------------- 应用信息 ---------------
 
-  static const String appName = '信鸥Flutter基础框架';
+  static const String appName = '';
 
   //--------------- 服务端信息 ---------------
 

@@ -59,7 +59,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     //     size: 18,
     //   ),
     //   title: '位置权限',
-    //   description: '获取位置信息',
+    //   description: '',
     //   permission: [
     //     Permission.location,
     //     //PermissionGroup.locationAlways,
@@ -72,7 +72,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     //     size: 18,
     //   ),
     //   title: '拍照权限',
-    //   description: '直播课互动提问',
+    //   description: '',
     //   permission: [Permission.camera],
     // ),
     //const PermissionItem(
@@ -81,7 +81,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     //     size: 18,
     //   ),
     //   title: '录音权限',
-    //   description: '直播课语音对话',
+    //   description: '',
     //   permission: [Permission.microphone],
     // ),
   ];

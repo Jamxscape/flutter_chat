@@ -14,94 +14,43 @@ class HomePage extends StatelessWidget {
 
   final HomeController _controller = Get.put(HomeController());
 
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: '首页',
-      ),
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    _controller.setIdle();
-                  },
-                  child: const Text('Idle'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    _controller.setBusy();
-                  },
-                  child: const Text('Busy'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    _controller.setError();
-                  },
-                  child: const Text('Error'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    _controller.setEmpty();
-                  },
-                  child: const Text('Empty'),
-                ),
-              ]
-                  .map(
-                    (e) => Expanded(
-                      child: Container(
-                        child: e,
-                        padding: const EdgeInsets.all(5),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed<void>(Routes.autosize);
-                  },
-                  child: const Text('适配页'),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    final dateTime = await DialogHelper.showDatePicker(
-                        rangerType: DateRangerType.range);
-                    if (dateTime == null) {
-                      showToast('未选择日期');
-                      return;
-                    }
-                    showToast(dateTime.toString());
-                  },
-                  child: const Text('弹出日期对话框'),
-                ),
-              ]
-                  .map(
-                    (e) => Expanded(
-                      child: Container(
-                        child: e,
-                        padding: const EdgeInsets.all(5),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
-            Expanded(
-              child: RefreshStateWidget<HomeController>(
-                (state) => ListView.separated(
-                  itemBuilder: (context, index) => SizedBox(
-                    height: 48,
-                    child: Center(
-                      child: Text('${_controller.list[index]}'),
-                    ),
+            const SizedBox(height: 200),
+            const Text('输入属于自己的昵称'),
+            const SizedBox(height: 10),
+            TextField(
+              controller: controller,
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+                hintText: '',
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
                   ),
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: _controller.list.length,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 100),
+            ElevatedButton(
+              child: const Text('提交'),
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
               ),
             ),
