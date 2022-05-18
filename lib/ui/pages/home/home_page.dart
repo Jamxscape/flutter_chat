@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
 
   final HomeController _controller = Get.put(HomeController());
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +24,10 @@ class HomePage extends StatelessWidget {
             const Text('输入属于自己的昵称'),
             const SizedBox(height: 10),
             TextField(
-              controller: controller,
+              controller: _controller.textEditController,
+              onChanged: (str) {
+                _controller.checkTextEdit();
+              },
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                 hintText: '',
@@ -43,17 +45,26 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 100),
-            ElevatedButton(
-              child: const Text('提交'),
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                onPrimary: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32.0),
+            Obx(() {
+              return ElevatedButton(
+                child: const Text('提交'),
+                onPressed: () {
+                  if (!_controller.isTextEditingNull.value) {
+                    Get.offNamed<void>(Routes.chatPage,
+                        arguments: _controller.textEditController.text);
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: _controller.isTextEditingNull.value
+                      ? Colors.grey
+                      : Colors.blue,
+                  onPrimary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),

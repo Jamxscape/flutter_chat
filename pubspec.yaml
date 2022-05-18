@@ -116,6 +116,9 @@ dependencies:
   # 加载动画
   loading_indicator: 3.0.2
 
+  # websocket
+  web_socket_channel: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
